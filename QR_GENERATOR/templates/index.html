@@ -44,12 +44,16 @@
             <h1>Hello {{ name }}</h1>
         </div>
         <div class="input-div">
-            <h2>Please Enter the Text</h2>
-            <input type="text" name="" id="">
+            <form action="" method="post">
+                {% csrf_token %}
+                <label for="user_input">Enter something:</label>
+                <input type="text" id="user_input" name="user_input">
+                <input type="submit" value="Submit">
+            </form>
         </div>
         <div class="result-div">
             <div class="result">
-
+                {{ qrimg }}
             </div>
         </div>
     </section>
