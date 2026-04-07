@@ -5,5 +5,6 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.process_form_view),
+    path('try/', views.process_form_view),
     # path('process/', views.process_form_view, name='process_form_view')
 ]

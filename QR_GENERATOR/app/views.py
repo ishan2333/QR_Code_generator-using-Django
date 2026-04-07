@@ -15,3 +15,6 @@ def process_form_view(request):
         qr_code = base64.b64encode(buffer.getvalue()).decode()
 
     return render(request, "index.html",{"qr_code" : qr_code})
+
+def second_view(request):
+    return render(request , "try.html")   

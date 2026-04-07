@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+
+    <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    }
+
+    .container {
+    width: 90%;
+    max-width: 900px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    }
+
+    .input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    }
+
+    input {
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    outline: none;
+    }
+
+    button {
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(to right, #2575fc, #6a11cb);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    }
+
+    button:hover {
+    transform: scale(1.03);
+    opacity: 0.9;
+    }
+
+    .main {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    }
+
+    .qr-preview {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+    background: #f7f7f7;
+    padding: 20px;
+    border-radius: 15px;
+    }
+
+    .qr-preview img {
+    width: 200px;
+    max-width: 100%;
+    }
+
+    .download {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: #333;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    }
+
+    .download:hover {
+    background: #000;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+    }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>QR Code Generator</h1>
+
+  <form method="POST" class="input-section">
+    <input type="text" name="user_input" placeholder="Enter text or URL" required>
+    <button type="submit">Generate QR Code</button>
+  </form>
+
+  {% if qr_code %}
+  <div class="main">
+    <div class="qr-preview">
+      <h3>Your QR Code</h3>
+      <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code">
+      <br>
+      <a class="download" href="data:image/png;base64,{{ qr_code }}" download="qr.png">Download QR Code</a>
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+
+</body>
+</html>
